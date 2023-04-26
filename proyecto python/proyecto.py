@@ -13,10 +13,10 @@ def menu():
 
 def ruleta_aleatoria():
     lista = []
-    a = input("Ingrese las opciones de la ruleta aleatoria: ")
-    while a != '.':
-        lista.append(a)
+    a=0
+    while a != '0':
         a = input("Ingrese las opciones de la ruleta aleatoria: ")
+        lista.append(a)
     print("La ruleta ha seleccionado la opcion de: {}".format(a))
     return random.choice(lista)
 
@@ -26,9 +26,8 @@ def lista_de_tareas():
     while a != ".":
         a = input("Ingresa una tarea para hacer: ")
         if a!=".": 
-            
             lista.append(a)
-    print("""
+        print("""
     Tus tareas son:
     {}""".format(lista))
     return lista
@@ -36,29 +35,38 @@ def lista_de_tareas():
 
 def adivinanzas():
     print("""
+    *Las respuestas tienen que estar contestadas con la primera letra mayuscula
+
     -Soy un ave muy colorida,
     Con plumas brillantes y largas,
     En las noches, mi canto es oído,
-    ¿Quién soy? 
+    ¿Quién soy? """)
 
+    a=input("Respuesta 1")
+
+    print("""
     -Tengo ramas, pero no hojas,
     Un tronco, pero no es de árbol,
-    ¿Qué soy? 
+    ¿Qué soy? """)
 
+    b=input("Respuesta 2: ")
+    print("""
     -De noche soy blanco,
     De día me vuelvo negro,
-    ¿Quién soy?
+    ¿Quién soy? 
+    """)
 
+    c=input("Respuesta 3: ")
+
+    print("""
     -Todos me quieren tocar,
     Pero si me tocan, me destruyen,
-    ¿Quién soy?
-
-    *La respuesta tiene que estar contestada con la primera letra mayuscula
+    ¿Quién soy? 
     """)
-    a=input("Respuestas 1: ")
-    b=input("Respuestas 2: ")
-    c=input("Respuestas 3: ")
+
     d=input("Respuestas 4: ")
+
+
     if a=="Pavo real":
         print("La respuesta 1 es correcta ")
     if not a=="Pavo real":
