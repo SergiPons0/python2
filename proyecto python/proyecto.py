@@ -1,5 +1,5 @@
 import random
-
+import os
 def menu():
     print("""
     1. Ruleta Aleatoria
@@ -14,23 +14,28 @@ def menu():
 def ruleta_aleatoria():
     lista = []
     a=0
-    while a != '0':
+    b=random.randint(10)
+    while a != '.':
         a = input("Ingrese las opciones de la ruleta aleatoria: ")
-        lista.append(a)
-    print("La ruleta ha seleccionado la opcion de: {}".format(a))
-    return random.choice(lista)
+        lista.append(random(a))
+    print("La ruleta ha seleccionado la opcion de: {}".format(lista))
+    return lista
 
 def lista_de_tareas():
-    lista = []
-    a = 1
-    while a != ".":
-        a = input("Ingresa una tarea para hacer: ")
-        if a!=".": 
-            lista.append(a)
-        print("""
-    Tus tareas son:
-    {}""".format(lista))
-    return lista
+    listaTareas="Lista_de_Tareas"
+    a=0
+    while a!=".":
+        a=input("Introduce los elementos de la lista de tareas: ")
+        if a!=".":
+            
+            
+    with open("/home/alumnat/Escritorio/listaTareas", "a") as archivo:
+                
+                archivo.write(a+"\n")
+                
+            
+                
+
 
 
 def adivinanzas():
