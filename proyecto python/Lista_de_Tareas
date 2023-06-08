@@ -1,1 +1,32 @@
-pizza
+def guardar_tareas(tareas):
+    ruta_archivo = '\Users\ciclesgm\Escritorio\lista_tareas.txt'
+    with open(ruta_archivo, 'w') as archivo:
+        for tarea in tareas:
+            archivo.write(tarea + '\n')
+
+def actualizar_tarea(tarea_vieja, tarea_nueva):
+    ruta_archivo = '\Users\ciclesgm\Escritorio\lista_tareas.txt'
+    with open(ruta_archivo, 'r') as archivo:
+        lineas = archivo.readlines()
+    with open(ruta_archivo, 'w') as archivo:
+        for linea in lineas:
+            if linea.strip() == tarea_vieja:
+                archivo.write(tarea_nueva + '\n')
+            else:
+                archivo.write(linea)
+
+def borrar_tarea(tarea):
+    ruta_archivo = '\Users\ciclesgm\Escritorio\lista_tareas.txt'
+    with open(ruta_archivo, 'r') as archivo:
+        lineas = archivo.readlines()
+    with open(ruta_archivo, 'w') as archivo:
+        for linea in lineas:
+            if linea.strip() != tarea:
+                archivo.write(linea)
+
+def mostrar_tareas():
+    ruta_archivo = '\Users\ciclesgm\Escritorio\lista_tareas.txt'
+    with open(ruta_archivo, 'r') as archivo:
+        lineas = archivo.readlines()
+    for i, linea in enumerate(lineas, start=1):
+        print(f"{i}. {linea.strip()}")

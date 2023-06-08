@@ -45,7 +45,7 @@ def adivinanzas():
     En las noches, mi canto es oído,
     ¿Quién soy? """)
 
-    a=input("Respuesta 1")
+    a=input("Respuesta 1:")
 
     print("""
     -Tengo ramas, pero no hojas,
