@@ -27,9 +27,7 @@ def lista_de_tareas():
     while a!=".":
         a=input("Introduce los elementos de la lista de tareas: ")
         if a!=".":
-            
-            
-    with open("/home/alumnat/Escritorio/listaTareas", "a") as archivo:
+            with open("/home/alumnat/Escritorio/listaTareas", "a") as archivo:
                 
                 archivo.write(a+"\n")
                 
