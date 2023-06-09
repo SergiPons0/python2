@@ -39,16 +39,76 @@ def ruleta_aleatoria():
         
 
 
-def lista_de_tareas():
-    listaTareas="Lista_de_Tareas"
-    a=0
-    while a!=".":
-        a=input("Introduce los elementos de la lista de tareas: ")
-        if a!=".":
-            with open("/home/alumnat/Escritorio/listaTareas", "a") as archivo:
-                
-                archivo.write(a+"\n")
-                
+def guardar_tareas():
+    ruta_directorio = '/home/ramis'
+    nombre_archivo = 'lista_tareas.txt'
+    ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
+    tareas = []
+    while True:
+        tarea = input("Ingrese una tarea: ")
+        if tarea == '.':
+            break
+        tareas.append(tarea)
+    with open(ruta_archivo, 'w') as archivo:
+        for tarea in tareas:
+            archivo.write(tarea + '\n')
+    print("Tareas guardadas exitosamente.")
+
+def actualizar_tarea():
+    ruta_directorio = '/home/ramis'
+    nombre_archivo = 'lista_tareas.txt'
+    ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
+    tarea_vieja = input("Ingrese la tarea que desea actualizar: ")
+    tarea_nueva = input("Ingrese la nueva tarea: ")
+    with open(ruta_archivo, 'r') as archivo:
+        lineas = archivo.readlines()
+    with open(ruta_archivo, 'w') as archivo:
+        for linea in lineas:
+            if linea.strip() == tarea_vieja:
+                archivo.write(tarea_nueva + '\n')
+            else:
+                archivo.write(linea)
+    print("Tarea actualizada exitosamente.")
+
+def borrar_tarea():
+    ruta_directorio = '/home/ramis'
+    nombre_archivo = 'lista_tareas.txt'
+    ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
+    tarea = input("Ingrese la tarea que desea borrar: ")
+    with open(ruta_archivo, 'r') as archivo:
+        lineas = archivo.readlines()
+    with open(ruta_archivo, 'w') as archivo:
+        for linea in lineas:
+            if linea.strip() != tarea:
+                archivo.write(linea)
+    print("Tarea borrada exitosamente.")
+
+def mostrar_tareas():
+    ruta_directorio = '/home/ramis'
+    nombre_archivo = 'lista_tareas.txt'
+    ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
+    try:
+        with open(ruta_archivo, 'r') as archivo:
+            lineas = archivo.readlines()
+        for i, linea in enumerate(lineas, start=1):
+            print(f"{i}. {linea.strip()}")
+    except FileNotFoundError:
+        print("El archivo no existe.")
+
+def menu_tareas():
+    print("""
+    Menu
+        1. Guardar tareas
+        2. Actualizar tareas
+        3. Borrar tareas
+        4. Mostrar tareas
+        5. Salir
+        """)
+    x= input("Elije la opcion que quieras: ")
+    return x
+
+#PPtareas
+                    
             
                 
 
@@ -109,13 +169,6 @@ def adivinanzas():
     return a, b, c, d
 
 
-
-
-
-
-
-
-
 #PP
 x="1"
 while x!=".":
@@ -127,7 +180,22 @@ while x!=".":
 
             case "2":
                 print("Has elegido la opcion de la lista de tareas")
-                Lista=lista_de_tareas()
+                while True:
+                    p=menu_tareas()
+                    match p:
+                        case "1": 
+                            guardar_tareas()
+                        case "2":
+                            actualizar_tarea()
+                        case "3":
+                            borrar_tarea()
+                        case "4":
+                            mostrar_tareas()
+                        case "5":
+                            print("Adiós")
+                            break
+                        case other:
+                            print("Opción no válida.")   
             case "3":
                 print("Has elegido la opcion de el juego de las adivinanzas")
                 Juego=adivinanzas()
@@ -139,3 +207,7 @@ while x!=".":
                 poka=pokapoka()
             case other:
                 print("Opcion no valida")
+
+
+
+
