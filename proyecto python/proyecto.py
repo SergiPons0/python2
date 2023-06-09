@@ -12,14 +12,32 @@ def menu():
     return x
 
 def ruleta_aleatoria():
-    lista = []
-    a=0
-    b=random.randint(10)
-    while a != '.':
-        a = input("Ingrese las opciones de la ruleta aleatoria: ")
-        lista.append(random(a))
-    print("La ruleta ha seleccionado la opcion de: {}".format(lista))
-    return lista
+    while True:
+        opciones=[]
+        while True:
+            opcion= input("Escribe las opciones para la ruleta aleatoria: ")
+            if opcion=='.':
+                break
+            opciones.append(opcion)
+        
+        if len(opciones)< 2:
+            print("Escribe almenos dos opciones")
+            continue
+        
+        print("Ruleta Preparada para funcionar")
+
+        while True:
+            palabra_seleccionada=random.choice(opciones)
+            print("La ruleta se ha detenido en la opcion: {}".format(palabra_seleccionada))
+            otravez=input("Deseas girar la ruleta de nuevo? s/n: ")
+            if otravez.lower() !="s":
+                break
+
+        reiniciar=input("Deseas crear una ruleta nueva? s/n: ")
+        if reiniciar.lower() !="s":
+            break
+        
+
 
 def lista_de_tareas():
     listaTareas="Lista_de_Tareas"
