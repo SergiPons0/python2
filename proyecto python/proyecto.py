@@ -1,13 +1,15 @@
 import random
 import os
 import tkinter as tk
+
 def menu():
     print("""
     1. Ruleta Aleatoria
     2. Lista de Tareas
     3. Juego de Adivinanzas
-    4. fefef
+    4. Ventana Flotante
     5. ddwed
+    0. Salir 
     """)
     x= input("Introduce una opcion del menu: ")
     return x
@@ -37,8 +39,6 @@ def ruleta_aleatoria():
         reiniciar=input("Deseas crear una ruleta nueva? s/n: ")
         if reiniciar.lower() !="s":
             break
-        
-
 
 def guardar_tareas():
     ruta_directorio = '/home/ramis'
@@ -167,6 +167,10 @@ def adivinanzas():
     return respuesta1, respuesta2, respuesta3, respuesta4
 
 
+def ventana():
+    import imagen.py
+        
+
 
 
 #PP
@@ -201,10 +205,13 @@ while x!=".":
                 Juego=adivinanzas()
             case "4":
                 print("Has elegido la opcion de la ")
-                clase=()
+                ventanaflotante=ventana()
             case "5":
                 print("Has elegido la opcion de la ddwed")
                 poka=pokapoka()
+            case "0": 
+                print("Adios")
+                x="."
             case other:
                 print("Opcion no valida")
 
