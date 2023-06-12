@@ -1,5 +1,6 @@
 import random
 import os
+import tkinter as tk
 def menu():
     print("""
     1. Ruleta Aleatoria
@@ -42,14 +43,14 @@ def ruleta_aleatoria():
 def guardar_tareas():
     ruta_directorio = '/home/ramis'
     nombre_archivo = 'lista_tareas.txt'
-    ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
+    ruta_archivo = os.path.join(ruta_directorio, nombre_archivo) #os.path.join combinar la ruta del directorio y el nombre del archivo para obtener la ruta completa del archivo
     tareas = []
     while True:
         tarea = input("Ingrese una tarea: ")
         if tarea == '.':
             break
         tareas.append(tarea)
-    with open(ruta_archivo, 'w') as archivo:
+    with open(ruta_archivo, 'w') as archivo: #w=write
         for tarea in tareas:
             archivo.write(tarea + '\n')
     print("Tareas guardadas exitosamente.")
@@ -59,15 +60,15 @@ def actualizar_tarea():
     nombre_archivo = 'lista_tareas.txt'
     ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
     tarea_vieja = input("Ingrese la tarea que desea actualizar: ")
-    tarea_nueva = input("Ingrese la nueva tarea: ")
-    with open(ruta_archivo, 'r') as archivo:
-        lineas = archivo.readlines()
-    with open(ruta_archivo, 'w') as archivo:
+    tarea_nueva = input("Ingrese la nueva tarea: ") #Escribir la tarea vieja y a continuacion escribir la nueva tarea
+    with open(ruta_archivo, 'r') as archivo: #r = read
+        lineas = archivo.readlines() #mira las lineas dela archivo de texto buscando la tarea vieja que se quire remplazar
+    with open(ruta_archivo, 'w') as archivo: #abre el documento con escritura
         for linea in lineas:
-            if linea.strip() == tarea_vieja:
-                archivo.write(tarea_nueva + '\n')
+            if linea.strip() == tarea_vieja:  #busca la linea que sea igual a lo que hayamos puesto en tarea_vieja
+                archivo.write(tarea_nueva + '\n') #escribe la tarea_nueva por la vieja con un salto de linea
             else:
-                archivo.write(linea)
+                archivo.write(linea) #en caso de no haver tarea vieja escribira la tarea nueva sin mas
     print("Tarea actualizada exitosamente.")
 
 def borrar_tarea():
@@ -79,8 +80,8 @@ def borrar_tarea():
         lineas = archivo.readlines()
     with open(ruta_archivo, 'w') as archivo:
         for linea in lineas:
-            if linea.strip() != tarea:
-                archivo.write(linea)
+            if linea.strip() != tarea: #se mira si alguna tarea del archivo coincide con la tarea a borrar
+                archivo.write(linea) #se sobreescribida el archivo sin la tarea que queriamos borrar
     print("Tarea borrada exitosamente.")
 
 def mostrar_tareas():
@@ -88,11 +89,11 @@ def mostrar_tareas():
     nombre_archivo = 'lista_tareas.txt'
     ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
     try:
-        with open(ruta_archivo, 'r') as archivo:
-            lineas = archivo.readlines()
+        with open(ruta_archivo, 'r') as archivo: #se abrira el archivo con un read
+            lineas = archivo.readlines() #se leen todas las lineas del archivo y se guardan en lineas
         for i, linea in enumerate(lineas, start=1):
             print(f"{i}. {linea.strip()}")
-    except FileNotFoundError:
+    except FileNotFoundError: #Por si no existe el archivo nos saldra este print
         print("El archivo no existe.")
 
 def menu_tareas():
@@ -107,66 +108,65 @@ def menu_tareas():
     x= input("Elije la opcion que quieras: ")
     return x
 
-#PPtareas
-                    
-            
-                
-
-
-
 def adivinanzas():
     print("""
-    *Las respuestas tienen que estar contestadas con la primera letra mayuscula
+    * Las respuestas tienen que estar contestadas con la primera letra mayúscula *
 
-    -Soy un ave muy colorida,
+    - Soy un ave muy colorida,
     Con plumas brillantes y largas,
     En las noches, mi canto es oído,
-    ¿Quién soy? """)
+    ¿Quién soy? 
+    
+    """)
 
-    a=input("Respuesta 1:")
+    respuesta1 = input("Respuesta 1: ")
+
+    while respuesta1 != "Pavo real":
+        print("La respuesta 1 es incorrecta. Inténtalo de nuevo.")
+        respuesta1 = input("Respuesta 1: ")
 
     print("""
-    -Tengo ramas, pero no hojas,
+    - Tengo ramas, pero no hojas,
     Un tronco, pero no es de árbol,
     ¿Qué soy? """)
+    
 
-    b=input("Respuesta 2: ")
+    respuesta2 = input("Respuesta 2: ")
+
+    while respuesta2 != "Silla":
+        print("La respuesta 2 es incorrecta. Inténtalo de nuevo.")
+        respuesta2 = input("Respuesta 2: ")
+
     print("""
-    -De noche soy blanco,
+    - De noche soy blanco,
     De día me vuelvo negro,
     ¿Quién soy? 
+    
     """)
 
-    c=input("Respuesta 3: ")
+    respuesta3 = input("Respuesta 3: ")
+
+    while respuesta3 != "Búho":
+        print("La respuesta 3 es incorrecta. Inténtalo de nuevo.")
+        respuesta3 = input("Respuesta 3: ")
 
     print("""
-    -Todos me quieren tocar,
+    - Todos me quieren tocar,
     Pero si me tocan, me destruyen,
     ¿Quién soy? 
+    
     """)
 
-    d=input("Respuestas 4: ")
+    respuesta4 = input("Respuesta 4: ")
+
+    while respuesta4 != "Hielo":
+        print("La respuesta 4 es incorrecta. Inténtalo de nuevo.")
+        respuesta4 = input("Respuesta 4: ")
+
+    print("¡Todas las respuestas son correctas!")
+    return respuesta1, respuesta2, respuesta3, respuesta4
 
 
-    if a=="Pavo real":
-        print("La respuesta 1 es correcta ")
-    if not a=="Pavo real":
-        print("La respuesta 1 es incorrecta ")
-    if b=="Silla":
-        print("La respuesta 2 es correcta ")
-    if not b=="Silla":
-        print("La respuesta 2 es incorrecta ")
-    if c=="Buho":
-        print("La respuesta 3 es correcta ")
-    if not c=="Buho":
-        print("La respuesta 3 es incorrecta ")
-    if d=="Hielo":
-        print("La respuesta 4 es correcta ")
-    if not d=="Hielo":
-        print("La respuesta 4 es incorrecta ")
-    else:
-        print("Gracias por jugar")
-    return a, b, c, d
 
 
 #PP
@@ -200,8 +200,8 @@ while x!=".":
                 print("Has elegido la opcion de el juego de las adivinanzas")
                 Juego=adivinanzas()
             case "4":
-                print("Has elegido la opcion de la fefefe")
-                lala=lalalala()
+                print("Has elegido la opcion de la ")
+                clase=()
             case "5":
                 print("Has elegido la opcion de la ddwed")
                 poka=pokapoka()
