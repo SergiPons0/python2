@@ -1,14 +1,15 @@
 import random
 import os
 import tkinter as tk
+import requests
 
 def menu():
     print("""
     1. Ruleta Aleatoria
     2. Lista de Tareas
     3. Juego de Adivinanzas
-    4. Ventana Flotante
-    5. ddwed
+    4. Cargar Imagen
+    5. Apy
     0. Salir 
     """)
     x= input("Introduce una opcion del menu: ")
@@ -41,7 +42,7 @@ def ruleta_aleatoria():
             break
 
 def guardar_tareas():
-    ruta_directorio = '/home/ramis'
+    ruta_directorio = '/home/cicles'
     nombre_archivo = 'lista_tareas.txt'
     ruta_archivo = os.path.join(ruta_directorio, nombre_archivo) #os.path.join combinar la ruta del directorio y el nombre del archivo para obtener la ruta completa del archivo
     tareas = []
@@ -53,10 +54,10 @@ def guardar_tareas():
     with open(ruta_archivo, 'w') as archivo: #w=write
         for tarea in tareas:
             archivo.write(tarea + '\n')
-    print("Tareas guardadas exitosamente.")
+        print("Tareas guardadas exitosamente.")
 
 def actualizar_tarea():
-    ruta_directorio = '/home/ramis'
+    ruta_directorio = '/home/cicles'
     nombre_archivo = 'lista_tareas.txt'
     ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
     tarea_vieja = input("Ingrese la tarea que desea actualizar: ")
@@ -72,7 +73,7 @@ def actualizar_tarea():
     print("Tarea actualizada exitosamente.")
 
 def borrar_tarea():
-    ruta_directorio = '/home/ramis'
+    ruta_directorio = '/home/cicles'
     nombre_archivo = 'lista_tareas.txt'
     ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
     tarea = input("Ingrese la tarea que desea borrar: ")
@@ -85,7 +86,7 @@ def borrar_tarea():
     print("Tarea borrada exitosamente.")
 
 def mostrar_tareas():
-    ruta_directorio = '/home/ramis'
+    ruta_directorio = '/home/cicles'
     nombre_archivo = 'lista_tareas.txt'
     ruta_archivo = os.path.join(ruta_directorio, nombre_archivo)
     try:
@@ -128,7 +129,9 @@ def adivinanzas():
     print("""
     - Tengo ramas, pero no hojas,
     Un tronco, pero no es de árbol,
-    ¿Qué soy? """)
+    ¿Qué soy?
+     
+    """)
     
 
     respuesta2 = input("Respuesta 2: ")
@@ -166,12 +169,24 @@ def adivinanzas():
     print("¡Todas las respuestas son correctas!")
     return respuesta1, respuesta2, respuesta3, respuesta4
 
-
 def ventana():
-    import imagen.py
+    try: 
+        import imagen.py
+    except:
+        ModuleNotFoundError
+
+def apy():
+    for i in range(10):
+        a = "https://bus-soades.upc.edu/EquipsTIC/APIv1/tipusInfraestructura"+str((i+1))
+        res=requests.get(a)
+        if res.status_code == 200:
+            dades = res.json()
+            print("El nom del pokémon és: {}".format(dades["chain"]["species"]["name"]))
+            for e in dades["chain"]["evolves_to"]:
+                print("Nom de la seva evolució: ", e["species"]["name"])
+    else:
+        print("No hi ha dades.")
         
-
-
 
 #PP
 x="1"
@@ -203,15 +218,23 @@ while x!=".":
             case "3":
                 print("Has elegido la opcion de el juego de las adivinanzas")
                 Juego=adivinanzas()
+
             case "4":
-                print("Has elegido la opcion de la ")
+                print("Has elegido la opcion de Cargar una imagen ")
                 ventanaflotante=ventana()
+
             case "5":
-                print("Has elegido la opcion de la ddwed")
-                poka=pokapoka()
+                print("Has elegido la opcion del api")
+                peliculas=apy()
+
+            case "6":
+                print("Has elegido la opcion del Servidor Web")
+                adsd=apfd()
+
             case "0": 
                 print("Adios")
                 x="."
+
             case other:
                 print("Opcion no valida")
 
