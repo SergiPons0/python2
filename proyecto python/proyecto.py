@@ -2,9 +2,7 @@ import random
 import os
 import tkinter as tk
 import requests
-from PIL import Image, ImageTk
-from io import BytesIO
-import subprocess
+
 
 def menu():
     print("""
@@ -173,12 +171,11 @@ def adivinanzas():
     return respuesta1, respuesta2, respuesta3, respuesta4
 
 
-
 def ventana():
     try:
-        subprocess.call(['python', 'ventana.py'])
+        import ventana.py
     except FileNotFoundError:
-        print("Error: Archivo imagen.py no encontrado.")
+        print("Error: Archivo ventana.py no encontrado.")
         
 
 #PP
