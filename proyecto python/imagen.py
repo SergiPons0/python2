@@ -9,10 +9,19 @@ def cargar_imagen_desde_url(url):
     return imagen
 
 def mostrar_imagen():
+    # Obtener la URL de la imagen desde la entrada de texto
     url_imagen = entrada_url.get()
+
+    # Cargar la imagen desde la URL
     imagen = cargar_imagen_desde_url(url_imagen)
-    imagen = imagen.resize((300, 300))  # Ajusta el tamaño de la imagen si es necesario
+
+    # Ajustar el tamaño de la imagen si es necesario
+    imagen = imagen.resize((300, 300))
+
+    # Convertir la imagen en un objeto ImageTk para mostrarla en la etiqueta
     imagen_tk = ImageTk.PhotoImage(imagen)
+
+    # Actualizar la imagen en la etiqueta
     etiqueta_imagen.configure(image=imagen_tk)
     etiqueta_imagen.image = imagen_tk
 
@@ -32,4 +41,3 @@ boton_cargar = tk.Button(ventana, text="Cargar imagen", command=mostrar_imagen)
 boton_cargar.pack(pady=10)
 
 ventana.mainloop()
-
